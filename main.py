@@ -1,12 +1,12 @@
 import json
 
 
-class DefaultSchedule:
+class PostDefaultSchedule:
     def __init__(self, day, teacher):
         self.day = day
         self.teacher = teacher
 
-class Student:
+class PostStudent:
     def __init__(self, name, schedule, total_sessions, progress, lesson_plan):
         self.name = name
         self.schedule = schedule
@@ -14,13 +14,13 @@ class Student:
         self.progress = progress
         self.lesson_plan = lesson_plan
         
-class Teacher:
+class PostTeacher:
     def __init__(self, name, schedule):
         self.name = name
         self.schedule = schedule
     
 
-class LessonInfo:
+class PostLessonInfo:
     def __init__(self, date, day, teacher, time):
         self.date = date
         self.day = day
@@ -104,7 +104,7 @@ class LessonInfo:
 def main():
     print("미뉴엣 첫 시작"),
     student_list = []
-    file_path = "./minuet_students_full_schedule_2025_updated.json"
+    file_path = "./data/minuet_students_full_schedule_2025_updated.json"
     loadData(file_path, student_list)
     print(f"총 {len(student_list)}명")
     for student in student_list:
@@ -131,8 +131,8 @@ def loadData(file_path, student_list):
             day = lesson["day"]
             teacher = lesson["teacher"]
             time = lesson["time"]
-            lesson_plan.append(LessonInfo(date, day, teacher, time))
-        student_list.append(Student(name, schedules, total_sessions, progress_sessions, lesson_plan))
+            lesson_plan.append(PostLessonInfo(date, day, teacher, time))
+        student_list.append(PostStudent(name, schedules, total_sessions, progress_sessions, lesson_plan))
         
 def saveData():
     print("데이터 저장")
