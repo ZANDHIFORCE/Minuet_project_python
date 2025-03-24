@@ -1,4 +1,4 @@
-class Schedule:
+class Lesson:
     def __init__(self, lesson_id, teacher_id, student_id, lesson_datetime):
         self.id = lesson_id
         self.teacher_id = teacher_id

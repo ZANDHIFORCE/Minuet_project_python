@@ -1,8 +1,8 @@
 class Teacher:
     def __init__(self, name, subject, teacher_id=None):
-        self.id = None
-        self.name = None
-        self.subject = None
+        self.id = teacher_id
+        self.name = name
+        self.subject = subject
         
         
 #   {

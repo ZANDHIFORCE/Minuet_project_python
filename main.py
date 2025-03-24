@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 from domain.teacher import Teacher
 from domain.student import Student
-from domain.schedule import Schedule
+from domain.lesson import Schedule
 
 
 class PostDefaultSchedule:
@@ -145,7 +145,7 @@ def main():
             # lesson_id: Any, teacher_id: Any, student_id: Any, lesson_datetime: Any) -> Schedule
             lesson_id
             
-            teacher_id
+            teacher_id = 0
             for item in teacher_list:
                 if item["teacher"].name == lesson.teacher.rstrip("T"):
                     teacher_id = item["id"]
