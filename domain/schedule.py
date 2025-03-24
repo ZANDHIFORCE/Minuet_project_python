@@ -1,10 +1,9 @@
-class Lesson:
-    def __init__(self, lesson_id, teacher_id, student_id, lesson_date, time):
+class Schedule:
+    def __init__(self, lesson_id, teacher_id, student_id, lesson_datetime):
         self.id = lesson_id
         self.teacher_id = teacher_id
         self.student_id = student_id
-        self.lesson_date = lesson_date
-        self.time = time
+        self.lesson_datetime = lesson_datetime
 
 
 # {
