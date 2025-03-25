@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 from domain.teacher import Teacher
 from domain.student import Student
-from domain.lesson import Schedule
+from domain.lesson import Lesson
 
 
 class PostDefaultSchedule:
@@ -19,10 +19,20 @@ class PostStudent:
         self.progress = progress
         self.lesson_plan = lesson_plan
         
-class PostTeacher:
-    def __init__(self, name, schedule):
-        self.name = name
-        self.schedule = schedule
+    def to_student_dic():
+        # {
+        # "id": 1,
+        # "name": "장예진",
+        # "total_sessions": 8,
+        # "progress_sessions": 5
+        # }
+        return {
+            "id": self.id,
+            "name": self.name,
+            "total_sessions": self.total_sessions,
+            "progress_sessions": self.progress,
+        }
+        
     
 
 class PostLessonInfo:
@@ -114,7 +124,7 @@ def main():
     #이전 객체 추출출
     pStudent_list = []
     file_path = "./data/minuet_students_full_schedule_2025_updated.json"
-    loadData(file_path, pStudent_list)
+    load_data_from_json(file_path, pStudent_list)
     print(f"총 {len(pStudent_list)}명")
     for pStudent in pStudent_list:
         for lesson in pStudent.lesson_plan:
@@ -164,16 +174,20 @@ def main():
             # "2025-03-27" + "18:00"
             lesson_datetime = datetime.strptime(f"{lesson.date} {lesson.time}", "%Y-%m-%d %H:%M")
             
-            lesson_list.append(Schedule(lesson_id, teacher_id, student_id, lesson_datetime))    
+            lesson_list.append(Lesson(lesson_id, teacher_id, student_id, lesson_datetime))    
             
             lesson_id += 1
             print(lesson_id, teacher_id, student_id, lesson_datetime)
     
-    print()
-    saveData()
+    students = [ item["student"] for item in student_list]
+    teachers = [ item["teacher"] for item in teacher_list]
+    lessons = lesson_list
+    
+    save_data_to_jsons(students, teachers, lessons)
     
     
-def loadData(file_path, student_list):
+    
+def load_data_from_json(file_path, student_list):
     
     id = 1
     
@@ -195,8 +209,17 @@ def loadData(file_path, student_list):
         student_list.append(PostStudent(id, name, schedules, total_sessions, progress_sessions, lesson_plan))
         id += 1
         
-def saveData():
-    print("데이터 저장")
+def save_data_to_jsons(students, teachers, lessons):
+    students_data = [student.to_dict() for student in students]
+    with open("./data/students.json", "w", encoding="utf-8") as f:
+        json.dump(students_data, f, ensure_ascii=False, indent=4)
+    teacher_date = [teacher.to_dict() for teacher in teachers]
+    with open("./data/teachers.json","w",encoding="utf-8") as f:
+        json.dump(teacher_date, f, ensure_ascii=False, indent=4)
+        
+    lesson_date = [lesson.to_dict() for lesson in lessons]
+    with open("./data/lessons.json","w",encoding="utf-8") as f:
+        json.dump(lesson_date, f, ensure_ascii=False, indent=4)
     
 if __name__ == "__main__":
     main()

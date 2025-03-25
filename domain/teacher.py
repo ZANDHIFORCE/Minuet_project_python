@@ -3,6 +3,13 @@ class Teacher:
         self.id = teacher_id
         self.name = name
         self.subject = subject
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "subject": self.subject
+        }
         
         
 #   {
