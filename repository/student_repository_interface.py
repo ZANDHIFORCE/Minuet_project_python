@@ -5,6 +5,10 @@ from typing import List
 
 class StudentRepositoryInterface(ABC):
     @abstractmethod
+    def get_length(self) -> int:
+        pass
+    
+    @abstractmethod
     def get_student(self, student_id: int) -> Student:
         pass
 

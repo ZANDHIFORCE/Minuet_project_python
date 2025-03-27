@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "name": "조동휘",
+        "total_sessions": 12,
+        "progress_sessions": 5
+    },
+    {
+        "id": 2,
+        "name": "송미서",
+        "total_sessions": 12,
+        "progress_sessions": 4
+    }
+]

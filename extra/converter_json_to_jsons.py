@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 from domain.teacher import Teacher
 from domain.student import Student
-from domain.lesson import Lesson
+from domain.lesson_plan import LessonPlan
 
 
 class PostDefaultSchedule:
@@ -165,7 +165,7 @@ def load_class_from_data(pStudent_list):
             lesson_datetime = datetime.strptime(f"{lesson.date}T{lesson.time}", "%Y-%m-%dT%H:%M")
             
             #lesson_list에 lesson 객체 추가 
-            lesson_list.append(Lesson(lesson_id, teacher_id, student_id, lesson_datetime))    
+            lesson_list.append(LessonPlan(lesson_id, teacher_id, student_id, lesson_datetime))    
             lesson_id += 1
 
     
@@ -197,10 +197,9 @@ def save_data_to_jsons(students, teachers, lessons, students_path, teachers_path
         json.dump(lesson_date, f, ensure_ascii=False, indent=4)
 
 
-
-json_file_path = "./data/minuet_students_full_schedule_2025_updated.json"
-students_path = "./data/students.json"
-teachers_path ="./data/teachers.json"
-lessons_path = "./data/lessons.json"
+json_file_path = "./minuet_students_full_schedule_2025_updated.json"
+students_path = "./students.json"
+teachers_path ="./teachers.json"
+lessons_path = "./lessons.json"
 
 converter_json_to_jsons(json_file_path, students_path, teachers_path, lessons_path)
