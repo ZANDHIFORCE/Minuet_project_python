@@ -1,0 +1,46 @@
+# ▶️ Python 기본
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# ▶️ 가상환경
+venv/
+env/
+.venv/
+ENV/
+
+# ▶️ VSCode 설정 파일
+.vscode/
+.settings/
+
+# ▶️ 테스트/로그/임시 파일
+*.log
+*.tmp
+*.swp
+
+# ▶️ 프로젝트에서 생성되는 데이터
+/data/
+*.json
+
+# ▶️ OS 별 무시 파일
+.DS_Store
+Thumbs.db
+
+# ▶️ 파이썬 관련 툴 설정
+.pytest_cache/
+.coverage
+.tox/
+.mypy_cache/
+.cache/
+
+# ▶️ Jupyter 노트북 체크포인트 (혹시 쓰는 경우)
+.ipynb_checkpoints/
+
+# ▶️ 백업 파일
+*~
+*.bak
+
+# ▶️ Git 자체
+.git/
