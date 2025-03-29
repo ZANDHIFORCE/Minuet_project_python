@@ -4,7 +4,7 @@ import unittest
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(BASE_DIR)
 
-from repository.memory_student_repository import MemoryStudentRepository 
+from repository.memory.memory_student_repository import MemoryStudentRepository 
 from domain.student import Student
 
 class TestMemoryStudentRepository(unittest.TestCase):
@@ -21,9 +21,9 @@ class TestMemoryStudentRepository(unittest.TestCase):
         student2 = Student("송미서", 4, 12, 2)
         self.repository.students[2] = student2
         #when
-        self.repository.save_to_file(f"{BASE_DIR}/test/test_data/student.json")
+        self.repository.save_to_file(f"{BASE_DIR}/test/test_data/test_students.json")
         self.repository.clearStore()
-        self.repository.load_from_file(f"{BASE_DIR}/test/test_data/student.json")
+        self.repository.load_from_file(f"{BASE_DIR}/test/test_data/test_students.json")
         #then
         self.assertEqual(student1.to_dict(), self.repository.students[1].to_dict())
         self.assertEqual(student2.to_dict(), self.repository.students[2].to_dict())
@@ -43,6 +43,13 @@ class TestMemoryStudentRepository(unittest.TestCase):
         self.repository.students[1]= student1
         #then
         self.assertEqual(self.repository.get_student(1).to_dict(), student1.to_dict())
+        
+    def test_get_student_exception(self):
+        #given
+        #when
+        with self.assertRaises(KeyError):
+            self.repository.get_student(1)
+        #then
 
     def test_get_students(self):
         #given
@@ -67,7 +74,7 @@ class TestMemoryStudentRepository(unittest.TestCase):
         #then
         self.assertEqual(student1.to_dict(), student2.to_dict())
         
-    def test_create_student_excepotion(self):
+    def test_create_student_exception(self):
         #given
         student1 = Student("조동휘", 5, 12, 1)
         student2 = Student("송미서", 4, 12, 1)
