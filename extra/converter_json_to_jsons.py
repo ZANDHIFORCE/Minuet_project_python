@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 from domain.teacher import Teacher
 from domain.student import Student
-from domain.lesson_plan import LessonPlan
+from domain.lesson_info import LessonInfo
 
 
 class PostDefaultSchedule:
@@ -165,7 +165,7 @@ def load_class_from_data(pStudent_list):
             lesson_datetime = datetime.strptime(f"{lesson.date}T{lesson.time}", "%Y-%m-%dT%H:%M")
             
             #lesson_list에 lesson 객체 추가 
-            lesson_list.append(LessonPlan(lesson_id, teacher_id, student_id, lesson_datetime))    
+            lesson_list.append(LessonInfo(lesson_id, teacher_id, student_id, lesson_datetime))    
             lesson_id += 1
 
     
