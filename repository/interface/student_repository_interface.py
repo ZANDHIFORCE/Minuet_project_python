@@ -27,3 +27,7 @@ class StudentRepositoryInterface(ABC):
     @abstractmethod
     def delete_student(self, student_id: int) -> None:
         pass
+    
+    @abstractmethod
+    def clear_store(self) -> None:
+        pass

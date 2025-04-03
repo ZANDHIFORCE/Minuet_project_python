@@ -4,10 +4,39 @@ class Student:
         self.name = name
         self.progress_sessions = progress_sessions
         self.total_sessions = total_sessions
-        self.lesson_slots = []
         
+    # Getters
     def get_id(self):
         return self.id
+
+    def get_name(self):
+        return self.name
+
+    def get_progress_sessions(self):
+        return self.progress_sessions
+
+    def get_total_sessions(self):
+        return self.total_sessions
+
+    def get_lesson_slots(self):
+        return self.lesson_slots
+
+    # Setters
+    def set_id(self, student_id):
+        self.id = student_id
+
+    def set_name(self, name):
+        self.name = name
+
+    def set_progress_sessions(self, progress_sessions):
+        self.progress_sessions = progress_sessions
+
+    def set_total_sessions(self, total_sessions):
+        self.total_sessions = total_sessions
+
+    def add_lesson_slot(self, lesson_slot):
+        self.lesson_slots.append(lesson_slot)
+    
         
     def to_dict(self):
         return {

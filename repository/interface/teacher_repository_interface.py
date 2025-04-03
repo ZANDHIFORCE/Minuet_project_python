@@ -27,3 +27,7 @@ class TeacherRepositoryInterface(ABC):
     @abstractmethod
     def delete_teacher(self, teacher_id: int) -> None:
         pass
+    
+    @abstractmethod
+    def clear_store(self) -> None:
+        pass

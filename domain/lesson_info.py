@@ -8,8 +8,38 @@ class LessonInfo:
         self.datetime = datetime # format: '%Y-%m-%dT%H:%M'
         self.completed = False
         
-    def get_id(self)-> int: 
+    # Getters
+    def get_id(self):
         return self.id
+
+    def get_teacher_id(self):
+        return self.teacher_id
+
+    def get_student_id(self):
+        return self.student_id
+
+    def get_datetime(self):
+        return self.datetime
+
+    def is_completed(self):
+        return self.completed
+
+    # Setters
+    def set_id(self, lesson_id):
+        self.id = lesson_id
+
+    def set_teacher_id(self, teacher_id):
+        self.teacher_id = teacher_id
+
+    def set_student_id(self, student_id):
+        self.student_id = student_id
+
+    def set_datetime(self, datetime):
+        self.datetime = datetime
+
+    def set_completed(self, completed: bool):
+        self.completed = completed
+        
     
     def to_dict(self):
         return {
