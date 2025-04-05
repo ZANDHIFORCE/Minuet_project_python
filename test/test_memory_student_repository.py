@@ -12,7 +12,7 @@ class TestMemoryStudentRepository(unittest.TestCase):
         self.repository = MemoryStudentRepository()
 
     def tearDown(self):
-        self.repository.clearStore()
+        self.repository.clear_store()
 
     def test_save_load(self):
         #given
@@ -22,7 +22,7 @@ class TestMemoryStudentRepository(unittest.TestCase):
         self.repository.students[2] = student2
         #when
         self.repository.save_to_file(f"{BASE_DIR}/test/test_data/test_students.json")
-        self.repository.clearStore()
+        self.repository.clear_store()
         self.repository.load_from_file(f"{BASE_DIR}/test/test_data/test_students.json")
         #then
         self.assertEqual(student1.to_dict(), self.repository.students[1].to_dict())

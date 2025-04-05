@@ -12,7 +12,7 @@ class TestMemoryTeacherRepository(unittest.TestCase):
         self.repository = MemoryTeacherRepository()
     
     def tearDown(self):
-        self.repository.clearStore()
+        self.repository.clear_store()
         
     def test_load_save_file(self):
         #given
@@ -22,7 +22,7 @@ class TestMemoryTeacherRepository(unittest.TestCase):
         self.repository.create_teacher(teacher2)
         #when
         self.repository.save_to_file(f"{BASE_DIR}/test/test_data/teachers.json")
-        self.repository.clearStore()
+        self.repository.clear_store()
         self.repository.load_from_file(f"{BASE_DIR}/test/test_data/teachers.json")
         #then
         teachers = self.repository.get_teachers()

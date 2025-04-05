@@ -25,7 +25,7 @@ class MemoryTeacherRepository(TeacherRepositoryInterface):
            teachers = [ teacher.to_dict() for teacher in self.teachers.values()]
            json.dump(teachers, file, ensure_ascii=False, indent = 4)
     
-    def clearStore(self) -> None:
+    def clear_store(self) -> None:
         self.teachers.clear()
         
     #Implement the methods from the interface
