@@ -23,6 +23,11 @@ class MemoryLessonInfoRepository(LessonInfoRepositoryInterface):
             data = [ lessons_info.to_dict() for lessons_info in self.lessons.values()]
             json.dump(data,file,ensure_ascii=False, indent=4)
     
+    def save_to_camel_file(self, path = f"{BASE_DIR}/test/test_data/lessonsInfo.json"):
+        with open(path, "w", encoding="utf-8") as file:
+            data = [ lessons_info.to_map() for lessons_info in self.lessons.values()]
+            json.dump(data,file,ensure_ascii=False, indent=4)
+    
     def clear_store(self):
         self.lessons.clear()
         

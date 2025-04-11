@@ -21,21 +21,24 @@ class TestMemoryLessonSlotRepository(unittest.TestCase):
             teacher_id=1,
             student_id=1,
             datetime=datetime(2025,4,1),
+            completed=False
         )
         lesson_info_2 = LessonInfo(
             lesson_id=2,
             teacher_id=1,
             student_id=1,
             datetime=datetime(2025,4,2),
+            completed=False
         )
         self.lesson_info_repositroy.create_lesson_info(lesson_info_1)
         self.lesson_info_repositroy.create_lesson_info(lesson_info_2)
+        pathname = f"{BASE_DIR}/test/test_data/test_lessons.info.json"
         #when
         self.lesson_info_repositroy.save_to_file(
-            path = f"{BASE_DIR}/test/test_data/lessons.info.json"
+            path = pathname
         )
         self.lesson_info_repositroy.load_from_file(
-            path = f"{BASE_DIR}/test/test_data/lessons.info.json"
+            path = pathname
         )
         #then
         for lesson_info in self.lesson_info_repositroy.get_lessons_info():
@@ -43,7 +46,17 @@ class TestMemoryLessonSlotRepository(unittest.TestCase):
                 self.assertEqual(lesson_info_1.to_dict(), lesson_info.to_dict())
             else:
                 self.assertEqual(lesson_info_2.to_dict(), lesson_info.to_dict())
+                
+        # os.remove(pathname)
         
+    def test_snake_to_camel_json(self):
+        self.lesson_info_repositroy.load_from_file(
+            path = f"{BASE_DIR}/data/lessons_info.json"
+        )
+        self.lesson_info_repositroy.save_to_camel_file(
+            path = f"{BASE_DIR}/test/test_data/spring/lessonsInfo.json"
+        )
+
     
     #Implement the methods from the interface
     def test_get_length(self):
@@ -53,12 +66,14 @@ class TestMemoryLessonSlotRepository(unittest.TestCase):
             teacher_id=1,
             student_id=1,
             datetime=datetime(2025,4,1),
+            completed=False,
         )
         lesson_info_2 = LessonInfo(
             lesson_id=2,
             teacher_id=1,
             student_id=1,
             datetime=datetime(2025,4,2),
+            completed=False,
         )
         self.lesson_info_repositroy.create_lesson_info(lesson_info_1)
         self.lesson_info_repositroy.create_lesson_info(lesson_info_2)
@@ -74,6 +89,7 @@ class TestMemoryLessonSlotRepository(unittest.TestCase):
             teacher_id=1,
             student_id=1,
             datetime=datetime(2025,4,1),
+            completed=False,
         )
         self.lesson_info_repositroy.create_lesson_info(lesson_info_1)
         #when
@@ -89,12 +105,14 @@ class TestMemoryLessonSlotRepository(unittest.TestCase):
             teacher_id=1,
             student_id=1,
             datetime=datetime(2025,4,1),
+            completed=False,
         )
         lesson_info_2 = LessonInfo(
             lesson_id=2,
             teacher_id=1,
             student_id=1,
             datetime=datetime(2025,4,2),
+            completed=False,
         )
         self.lesson_info_repositroy.create_lesson_info(lesson_info_1)
         self.lesson_info_repositroy.create_lesson_info(lesson_info_2)
@@ -114,6 +132,7 @@ class TestMemoryLessonSlotRepository(unittest.TestCase):
             teacher_id=1,
             student_id=1,
             datetime=datetime(2025,4,1),
+            completed=False,
         )
         #when
         self.lesson_info_repositroy.create_lesson_info(lesson_info_1)
@@ -128,12 +147,14 @@ class TestMemoryLessonSlotRepository(unittest.TestCase):
             teacher_id=1,
             student_id=1,
             datetime=datetime(2025,4,1),
+            completed=False,
         )
         lesson_info_2 = LessonInfo(
             lesson_id=1,
             teacher_id=3,
             student_id=4,
             datetime=datetime(2025,4,2),
+            completed=False,
         )
         self.lesson_info_repositroy.create_lesson_info(lesson_info_1)
         #when
@@ -148,6 +169,7 @@ class TestMemoryLessonSlotRepository(unittest.TestCase):
             teacher_id=1,
             student_id=1,
             datetime=datetime(2025,4,1),
+            completed=False,
         )
         self.lesson_info_repositroy.create_lesson_info(lesson_info_1)
         #when

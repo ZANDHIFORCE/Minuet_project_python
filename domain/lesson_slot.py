@@ -47,6 +47,15 @@ class LessonSlot:
             "day": self.day,
             "time": self.time.strftime("%H:%M"),
         }
+        
+    def to_map(self):
+        return {
+            "id": self.id,
+            "studentId": self.student_id,
+            "teacherId": self.teacher_id,
+            "day": self.day,
+            "time": self.time.strftime("%H:%M"),
+        }
     
     @classmethod
     def from_dict(cls, item:dict) -> dict:

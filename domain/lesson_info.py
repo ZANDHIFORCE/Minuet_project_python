@@ -1,12 +1,12 @@
 from datetime import datetime
 
 class LessonInfo:
-    def __init__(self, lesson_id, teacher_id, student_id, datetime):
+    def __init__(self, lesson_id, teacher_id, student_id, datetime, completed):
         self.id = lesson_id
         self.teacher_id = teacher_id
         self.student_id = student_id
         self.datetime = datetime # format: '%Y-%m-%dT%H:%M'
-        self.completed = False
+        self.completed = completed
         
     # Getters
     def get_id(self):
@@ -46,7 +46,17 @@ class LessonInfo:
             "id": self.id,
             "teacher_id": self.teacher_id,
             "student_id": self.student_id,
-            "datetime": self.datetime.strftime('%Y-%m-%dT%H:%M')
+            "date_time": self.datetime.strftime('%Y-%m-%dT%H:%M'),
+            "completed": self.completed
+        }
+        
+    def to_map(self):
+        return{
+            "id": self.id,
+            "teacherId": self.teacher_id,
+            "studentId": self.student_id,
+            "dateTime": self.datetime.strftime('%Y-%m-%dT%H:%M'),
+            "completed": self.completed
         }
     
     @classmethod
@@ -55,7 +65,8 @@ class LessonInfo:
             lesson_id = item["id"],
             teacher_id = item["teacher_id"],
             student_id = item["student_id"],
-            datetime = datetime.strptime(item["datetime"], '%Y-%m-%dT%H:%M'),
+            datetime = datetime.strptime(item["date_time"], '%Y-%m-%dT%H:%M'),
+            completed = item["completed"]
         )
 
         

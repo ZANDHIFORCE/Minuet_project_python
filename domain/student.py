@@ -44,8 +44,15 @@ class Student:
             "name": self.name,
             "total_sessions": self.total_sessions,
             "progress_sessions": self.progress_sessions,
-            #"lesson_slots": [lesson_slot.to_dict() for lesson_slot in self.lesson_slots]  
         }
+    
+    def to_map(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "totalSessions": self.total_sessions,
+            "progressSessions": self.progress_sessions,
+        }        
     
     @classmethod
     def from_dict(cls, data):

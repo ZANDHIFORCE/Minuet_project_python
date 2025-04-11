@@ -12,16 +12,21 @@ class MemoryStudentRepository(StudentRepositoryInterface):
     def __init__(self):
         self.students = {}
         
-    def load_from_file(self, file_path=f"{BASE_DIR}/data/students.json"):
-        with open(file_path, "r", encoding="utf-8") as file:
+    def load_from_file(self, path=f"{BASE_DIR}/data/students.json"):
+        with open(path, "r", encoding="utf-8") as file:
             students = json.load(file)
             for student in students:
                 object_student = Student.from_dict(student)
                 self.students[object_student.get_id()] = object_student
                 
-    def save_to_file(self, file_path = f"{BASE_DIR}/data/students.json"):
-        with open(file_path, "w", encoding="utf-8") as file:
+    def save_to_file(self, path = f"{BASE_DIR}/data/students.json"):
+        with open(path, "w", encoding="utf-8") as file:
             students = [student.to_dict() for student in self.students.values()]
+            json.dump(students, file, ensure_ascii=False, indent=4)
+            
+    def save_to_camel_file(self, path = f"{BASE_DIR}/test/test_data/spring/students.json"):
+        with open(path, "w", encoding="utf-8") as file:
+            students = [student.to_map() for student in self.students.values()]
             json.dump(students, file, ensure_ascii=False, indent=4)
     
     def clear_store(self):

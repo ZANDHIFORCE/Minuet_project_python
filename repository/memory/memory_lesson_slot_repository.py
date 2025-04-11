@@ -20,6 +20,11 @@ class MemoryLessonSlotRepository(LessonSlotRepositoryInterface):
         with open(path,"w",encoding="utf-8") as file:
             data = [lesson_slot.to_dict() for lesson_slot in self.lesson_slots.values()]
             json.dump(data, file, indent=4, ensure_ascii=False)
+            
+    def save_to_camel_file(self, path=f"{BASE_DIR}/test/test_data/lessonSlots.json"):
+        with open(path,"w",encoding="utf-8") as file:
+            data = [lesson_slot.to_map() for lesson_slot in self.lesson_slots.values()]
+            json.dump(data, file, indent=4, ensure_ascii=False)
         
     #Implementation    
     def get_length(self) -> int:

@@ -20,10 +20,11 @@ class TestMemoryTeacherRepository(unittest.TestCase):
         teacher2 = Teacher("동휘", "computer", 2)
         self.repository.create_teacher(teacher1)
         self.repository.create_teacher(teacher2)
+        pathname = f"{BASE_DIR}/test/test_data/test_teachers.json"
         #when
-        self.repository.save_to_file(f"{BASE_DIR}/test/test_data/teachers.json")
+        self.repository.save_to_file(pathname)
         self.repository.clear_store()
-        self.repository.load_from_file(f"{BASE_DIR}/test/test_data/teachers.json")
+        self.repository.load_from_file(pathname)
         #then
         teachers = self.repository.get_teachers()
         for teacher in teachers:
@@ -31,6 +32,16 @@ class TestMemoryTeacherRepository(unittest.TestCase):
                 self.assertEqual(teacher1.to_dict(), teacher.to_dict())
             else:
                 self.assertEqual(teacher2.to_dict(), teacher.to_dict())
+                
+        # os.remove(pathname)
+                
+    def test_snake_to_camel(self):
+        self.repository.load_from_file(
+            path = "data/teachers.json"
+        )
+        self.repository.save_to_camel_file(
+            path = "test/test_data/spring/teachers.json"
+        )
         
     #Implement the methods from the interface  
     def test_get_length(self):

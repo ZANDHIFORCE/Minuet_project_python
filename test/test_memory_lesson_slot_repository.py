@@ -21,7 +21,7 @@ class TestMemoryLessonSlotRepository(unittest.TestCase):
         #given
         self.repo.create_lesson_slot(self.slot1)
         self.repo.create_lesson_slot(self.slot2)
-        TEST_PATH = f"{BASE_DIR}/test/test_data/lesson_slots.json"
+        TEST_PATH = f"{BASE_DIR}/test/test_data/test_lesson_slots.json"
         # save
         self.repo.save_to_file(path=TEST_PATH)
 
@@ -36,6 +36,16 @@ class TestMemoryLessonSlotRepository(unittest.TestCase):
         self.assertEqual(self.repo.get_length(), 2)
         restored = self.repo.get_lesson_slot(1)
         self.assertEqual(restored.to_dict(), self.slot1.to_dict())
+        
+        # os.remove(TEST_PATH)
+        
+    def test_snake_to_cmel_json(self):
+        self.repo.load_from_file(
+            path = f"{BASE_DIR}/data/lesson_slots.json"
+        )
+        self.repo.save_to_camel_file(
+            path = f"{BASE_DIR}/test/test_data/spring/lessonSlots.json"
+        )
 
     def test_create_and_get_lesson_slot(self):
         self.repo.create_lesson_slot(self.slot1)

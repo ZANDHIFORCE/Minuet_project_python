@@ -20,14 +20,25 @@ class TestMemoryStudentRepository(unittest.TestCase):
         self.repository.students[1]= student1
         student2 = Student("송미서", 4, 12, 2)
         self.repository.students[2] = student2
+        pathname = f"{BASE_DIR}/test/test_data/test_students.json"
         #when
-        self.repository.save_to_file(f"{BASE_DIR}/test/test_data/test_students.json")
+        self.repository.save_to_file(pathname)
         self.repository.clear_store()
-        self.repository.load_from_file(f"{BASE_DIR}/test/test_data/test_students.json")
+        self.repository.load_from_file(pathname)
         #then
         self.assertEqual(student1.to_dict(), self.repository.students[1].to_dict())
         self.assertEqual(student2.to_dict(), self.repository.students[2].to_dict())
+        
+        # os.remove(pathname)
     
+    def test_snake_to_camel(self):
+        self.repository.load_from_file(
+            path = f"{BASE_DIR}/data/students.json"
+        )
+        self.repository.save_to_camel_file(
+            path = f"{BASE_DIR}/test/test_data/spring/students.json"
+        )
+        
     def test_get_length(self):
         #given
         self.repository.create_student(Student("조동휘", 5, 12, 1))

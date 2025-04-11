@@ -24,6 +24,11 @@ class MemoryTeacherRepository(TeacherRepositoryInterface):
         with open(path,'w',encoding='utf-8') as file:
            teachers = [ teacher.to_dict() for teacher in self.teachers.values()]
            json.dump(teachers, file, ensure_ascii=False, indent = 4)
+           
+    def save_to_camel_file(self, path=f"{BASE_DIR}/test/test_data/teachers.json"):
+        with open(path,'w',encoding='utf-8') as file:
+           teachers = [ teacher.to_map() for teacher in self.teachers.values()]
+           json.dump(teachers, file, ensure_ascii=False, indent = 4)
     
     def clear_store(self) -> None:
         self.teachers.clear()

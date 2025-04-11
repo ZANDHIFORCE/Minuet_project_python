@@ -32,7 +32,17 @@ class Teacher:
             "name": self.name,
             "subject": self.subject
         }
+        
+    def to_map(self):
+        return self.to_dict()
     
+    @classmethod
+    def from_dict(cls, item):
+        return cls(
+            id = item["teacher_id"],
+            name = ["name"],
+            subject = ["subject"],
+        )
     
         
 #   {
