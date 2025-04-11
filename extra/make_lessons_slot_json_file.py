@@ -38,7 +38,7 @@ lesson_slots = {}
 #{'id': 1, 'teacher_id': 1, 'student_id': 1, 'datetime': '2025-03-03T15:00'}
 lesson_slots = {}
 slot_id = 1
-for lesson_info in lesson_repository.get_lessons_info():
+for lesson_info in lesson_repository.get_lesson_infos():
     if start_date <= lesson_info.get_datetime() < end_date:
         print(lesson_info.get_datetime().time())
         lesson_slot = LessonSlot(

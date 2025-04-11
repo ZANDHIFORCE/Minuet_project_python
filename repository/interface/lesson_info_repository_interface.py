@@ -14,7 +14,7 @@ class LessonInfoRepositoryInterface(ABC):
         pass
 
     @abstractmethod
-    def get_lessons_info(self) -> List[LessonInfo]:
+    def get_lesson_infos(self) -> List[LessonInfo]:
         pass
 
     @abstractmethod

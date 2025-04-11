@@ -32,7 +32,7 @@ class TestMemoryLessonSlotRepository(unittest.TestCase):
         )
         self.lesson_info_repositroy.create_lesson_info(lesson_info_1)
         self.lesson_info_repositroy.create_lesson_info(lesson_info_2)
-        pathname = f"{BASE_DIR}/test/test_data/test_lessons.info.json"
+        pathname = f"{BASE_DIR}/test/test_data/test_lesson_infos.json"
         #when
         self.lesson_info_repositroy.save_to_file(
             path = pathname
@@ -41,7 +41,7 @@ class TestMemoryLessonSlotRepository(unittest.TestCase):
             path = pathname
         )
         #then
-        for lesson_info in self.lesson_info_repositroy.get_lessons_info():
+        for lesson_info in self.lesson_info_repositroy.get_lesson_infos():
             if lesson_info_1.get_id() == lesson_info.get_id():
                 self.assertEqual(lesson_info_1.to_dict(), lesson_info.to_dict())
             else:
@@ -51,10 +51,10 @@ class TestMemoryLessonSlotRepository(unittest.TestCase):
         
     def test_snake_to_camel_json(self):
         self.lesson_info_repositroy.load_from_file(
-            path = f"{BASE_DIR}/data/lessons_info.json"
+            path = f"{BASE_DIR}/data/lesson_infos.json"
         )
         self.lesson_info_repositroy.save_to_camel_file(
-            path = f"{BASE_DIR}/test/test_data/spring/lessonsInfo.json"
+            path = f"{BASE_DIR}/test/test_data/spring/lessonInfos.json"
         )
 
     
@@ -98,7 +98,7 @@ class TestMemoryLessonSlotRepository(unittest.TestCase):
         self.assertEqual(lesson_info_1.to_dict(), lesson_info_2.to_dict())
         
 
-    def test_get_lessons_info(self):
+    def test_get_lesson_infos(self):
         #given
         lesson_info_1 = LessonInfo(
             lesson_id=1,
@@ -117,9 +117,9 @@ class TestMemoryLessonSlotRepository(unittest.TestCase):
         self.lesson_info_repositroy.create_lesson_info(lesson_info_1)
         self.lesson_info_repositroy.create_lesson_info(lesson_info_2)
         #when
-        lessons_info = self.lesson_info_repositroy.get_lessons_info()
+        lesson_infos = self.lesson_info_repositroy.get_lesson_infos()
         #then
-        for lesson_info in lessons_info:
+        for lesson_info in lesson_infos:
             if lesson_info.get_id() == lesson_info_1.get_id():
                 self.assertEqual(lesson_info.to_dict(), lesson_info_1.to_dict())
             else:

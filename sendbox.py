@@ -30,7 +30,7 @@ student_id = 1
 student = student_repo.get_student(student_id)
 #{'id': 1, 'name': '홍서율', 'total_sessions': 8, 'progress_sessions': 5}
 
-lesson_info_list = lesson_info_repo.get_lessons_info()
+lesson_info_list = lesson_info_repo.get_lesson_infos()
 lesson_info_list.sort(key=lambda lesson: lesson.datetime)
 print(f"아래는 {student.get_name()}학생에게 예정되어있는 레슨입니다.")
 for lesson_info in lesson_info_list:
